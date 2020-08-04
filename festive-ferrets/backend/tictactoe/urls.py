@@ -1,9 +1,7 @@
+from django.urls import path,re_path
+from tictactoe import views
 
-from django.urls import path
-
-from . import views
-
-app_name = 'tictactoe'
-urlpatterns= [
-    
+urlpatterns = [
+    path('home', views.home),
+    path('tic-tac-toe', views.tictactoe),
 ]
