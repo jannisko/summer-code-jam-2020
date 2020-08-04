@@ -1,0 +1,24 @@
+.gameIcons {
+    width: 900px;
+    display: flex;
+    justify-content: space-around;
+}
+.gameLink {
+    width: 33.3%;
+}
+.gameLink a{
+    display: flex;
+    margin: 0px 10px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: black;
+}
+.gameLink a img {
+    width: 100%;
+
+}
+.gameLink a h4 {
+    text-decoration: underline;
+}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load gamesFunctionality %}
+{% block title %}Tic Tac Toe{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'tictactoe.css' %}">
+{% endblock %}
+{% block content %}
+ <main class="gameTicTacToe">
+    {% if error %}
+    <h2 class="error">{{error}}</h2>
+    {% endif %}
+    {% if winner %}
+    <h1 class="winner">{{winner}} is the winner!</h1>
+    {% endif %}
+    <table class="board">
+        <tr>
+            {% for x in boardSetup|slice:"0:3" %}
+            <td id="pos{{x}}" >
+
+                {% if moves|lookup:x == " " and not winner %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <button name="pos" value="{{x}}">Available</button>
+                </form>
+                {% elif winner %}
+
+                {% else %}
+                <img src="{% static moves|lookup:x|img %}"/>
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for x in boardSetup|slice:"3:6" %}
+            <td id="pos{{x}}" >
+
+                {% if moves|lookup:x == " "  and not winner %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <button name="pos" value="{{x}}">Available</button>
+                </form>
+                {% elif winner %}
+
+                {% else %}
+                <img src="{% static moves|lookup:x|img %}"/>
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for x in boardSetup|slice:"6:9"%}
+            <td id="pos{{x}}" >
+
+                {% if moves|lookup:x == " "  and not winner %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <button name="pos" value="{{x}}">Available</button>
+                </form>
+                {% elif winner %}
+
+                {% else %}
+                <img src="{% static moves|lookup:x|img %}"/>
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+    </table>
+    <div class="reset">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button name="reset" value="True">Reset</button>
+        </form>
+    </div>
+ </main>
+{% endblock %}

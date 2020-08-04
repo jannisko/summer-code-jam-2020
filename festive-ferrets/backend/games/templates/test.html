@@ -1,0 +1,15 @@
+
+    {% for x in boardSetup %}
+    {% if x > 3 %}
+    <tr>
+        <td id="pos{{x}}" >
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button name="pos" value="{{x}}" >Available</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+
+
+

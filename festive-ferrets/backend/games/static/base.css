@@ -1,0 +1,32 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body {
+    background-color: rgb(255, 176, 111);
+}
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.header {
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.header h1, h3 {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    justify-content: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+.main-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
