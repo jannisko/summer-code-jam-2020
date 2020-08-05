@@ -21,7 +21,7 @@ from nchan import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('nchan/', include('nchan.urls')),
-    path('tictactoe/', include('tictactoe.urls')),
+    path('tic-tac-toe/', include('tictactoe.urls')),
     path('', views.index),
 
 

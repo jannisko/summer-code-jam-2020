@@ -44,10 +44,11 @@ def tictactoe(request):
             if moves[x] == moves[x+3] and moves[x] == moves[x+6] and moves[x] != " ":
                 victory = [True, moves[x]]
 
-        if moves[0] == moves[4] and moves[0] == moves[8] and moves[x] != " ":
-            victory = [True, moves[x]]
-        elif moves[2] == moves[4] and moves[2] == moves[6] and moves[x] != " ":
-            victory = [True, moves[x]]
+        if moves[0] == moves[4] and moves[0] == moves[8] and moves[0] != " ":
+            victory = [True, moves[0]]
+
+        elif moves[2] == moves[4] and moves[2] == moves[6] and moves[2] != " ":
+            victory = [True, moves[2]]
 
         if victory[0] == True:
             return render(request, 'tic-tac-toe.html', {"boardSetup":[0,1,2,3,4,5,6,7,8],"moves":moves,"error":"","player":player,"winner":victory[1]})
