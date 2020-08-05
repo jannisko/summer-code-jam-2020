@@ -2,6 +2,6 @@ from django.urls import path,re_path
 from tictactoe import views
 
 urlpatterns = [
-    path('home', views.home),
-    path('tic-tac-toe', views.tictactoe),
+    path('', views.home),
+    path('play/', views.tictactoe),
 ]
