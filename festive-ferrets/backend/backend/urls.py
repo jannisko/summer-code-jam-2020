@@ -20,7 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('nchan/', include('nchan.urls')),
     path('tic-tac-toe/', include('tictactoe.urls')),
-    path('', views.index),
-
+    path('battleship/', include('battleship.urls')),
 
 ]
