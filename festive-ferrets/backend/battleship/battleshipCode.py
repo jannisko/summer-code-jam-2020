@@ -1,6 +1,15 @@
 from battleship.models import gameMoves, gameSession
 from random import shuffle,randint
 
+def deleteGame(gameIdentifier):
+    try:
+        gameId = gameSession.objects.get(gameId=gameIdentifier)
+        gameMoves.objects.get(game=gameId).delete()
+        gameId.delete()
+    except:
+        print()
+
+
 def getBoard(gameIdentifier):
     gameId = gameSession.objects.get(gameId=gameIdentifier)
     gameMoveModel = gameMoves.objects.get(game=gameId)
@@ -121,7 +130,23 @@ def writeShots(gameIdentifier, person, shot):
         gameMoveModel.enemyShots = gameMoveModel.enemyShots +"-"+ str(shot)
         gameMoveModel.save()
         
+#############################
 
+def getTurn(id):
+    gameId = gameSession.objects.get(gameId=id)
+    gameMoveModel = gameMoves.objects.get(game=gameId)
+
+    turn = gameMoveModel.turn
+    if turn == "p":
+        gameMoveModel.turn = "e"
+        message = "It is your turn"
+        gameMoveModel.save()
+    elif turn == "e":
+        gameMoveModel.turn = "p"
+        message = "It is the enemies turn"
+        gameMoveModel.save()
+
+    return turn, message
 
 
 ######################################
@@ -134,4 +159,20 @@ def newGame():
     enemyBoard, playerBoard = generateShipPos(enemyBoard, playerBoard)
     writeBoard(enemyBoard, playerBoard, gameId.gameId)
 
+
     return enemyBoard, playerBoard, gameId.gameId
+
+    ################
+
+def enemyTurn(id):
+    print("Hi")
+    p, e = getShots(id)
+    print(e)
+    found = False
+    while not found:
+        shot = str(randint(0,4))+str(randint(0,6))
+        if shot in e:
+            continue
+        else:
+            found=True
+    writeShots(id, "enemy", shot)

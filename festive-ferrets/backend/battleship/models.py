@@ -11,3 +11,4 @@ class gameMoves(models.Model):
     playerMoves = models.TextField(default="       -       -       -       -       ")
     enemyShots = models.TextField(default="")
     playerShots = models.TextField(default="")
+    turn = models.CharField(max_length=1, default="p")

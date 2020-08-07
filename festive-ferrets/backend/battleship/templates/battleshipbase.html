@@ -21,7 +21,12 @@
         {% if message %}
         <h2>{{message}}</h2>
         {% endif %}
-        
+        {% if resetButton %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button name="reset" value="True">Reset Game</button>
+        </form>
+        {% endif %}
         {% if startButton %}
         <form action="" method="GET">
             <button name="active" value="True">Start Game</button>
