@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battleship</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}"/>
+    <link rel="stylesheet" href="{% static 'battleship.css' %}">
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <div class="header-container">
+        <header class="header">
+            <h1>Festive Ferrets Fanatastic Fun Games</h1>
+            <h3>Play all the best games on the web with us!</h3>
+        </header>
+    </div>
+    <div class="main-container">      
+        <div class="messageArea">
+        {% if message %}
+        <h2>{{message}}</h2>
+        {% endif %}
+        
+        {% if startButton %}
+        <form action="" method="GET">
+            <button name="active" value="True">Start Game</button>
+        </form>
+        {% endif %}
+        
+        </div>
+        <div class="gameArea">
+            <div class="battleshipBoard enemy">
+                <ul class="y-co-ordinates">
+                    <li>A</li>
+                    <li>B</li>
+                    <li>C</li>
+                    <li>D</li>
+                    <li>E</li>
+                </ul>
+                <table class="board">
+                    {% block content1 %}
+                    {% endblock %}
+                </table>
+                <ul class="x-co-ordinates">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                </ul>
+            </div>
+        
+            <div class="battleshipBoard player">
+                <ul class="y-co-ordinates">
+                    <li>A</li>
+                    <li>B</li>
+                    <li>C</li>
+                    <li>D</li>
+                    <li>E</li>
+                </ul>
+                <table class="board">
+                    {% block content2 %}
+                    {% endblock %}
+                </table>
+                <ul class="x-co-ordinates">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    {% block test %}
+    {% endblock %}
+    <footer class="footer">
+
+    </footer>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'battleshipbase.html' %}
+{% load battleshipFunctionality %}
+
+{% block content1 %}
+{% for x in enemyShips %}
+<tr>
+    {% for area in x %}
+        {% returnInfo forloop.counter0 forloop.parentloop.counter0 playerShots enemyShips as found %}
+        {% if found == "hit" %}
+        <td style="background-color: red;"></td>
+        {% elif found == "miss" %}
+        <td style="background-color: yellow;"></td>
+        {% else %}
+        <td style="background-color: aqua;" >
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button name="enemyBeingShot" value="{{forloop.parentloop.counter0}}{{forloop.counter0}}">Available</button>
+            </form>
+        </td>
+        {% endif %}
+    {% endfor %}
+</tr>
+{% endfor %}
+{% endblock %}
+
+{% block content2 %}
+{% for x in playerShips %}
+<tr>
+    {% for area in x %}
+    {% if area != " " %}
+    <td style="background-color: grey;"></td>
+    {% else %}
+    <td style="background-color: aqua;"></td>
+    {% endif %}
+    {% endfor %}
+</tr>
+{% endfor %}
+
+{% endblock %}

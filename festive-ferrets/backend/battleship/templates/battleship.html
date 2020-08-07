@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'battleshipbase.html' %}
 {% load static %}
 {% block title %}Battleship{% endblock %}
 {% block styles %}
 <link rel="stylesheet" href="{% static 'battleship.css' %}">
 {% endblock %}
-{% block content %}
+{% block main %}
 <div class="messageArea">
 {% if message %}
 <h2>{{message}}</h2>
@@ -27,51 +27,8 @@
             <li>E</li>
         </ul>
         <table class="board">
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            {% block content1 %}
+            {% endblock %}
         </table>
         <ul class="x-co-ordinates">
             <li>1</li>
@@ -93,51 +50,8 @@
             <li>E</li>
         </ul>
         <table class="board">
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            {% block content2 %}
+            {% endblock %}
         </table>
         <ul class="x-co-ordinates">
             <li>1</li>
@@ -150,5 +64,6 @@
         </ul>
     </div>
 </div>
-
+{% block content3 %}
+{% endblock %}
 {% endblock %}

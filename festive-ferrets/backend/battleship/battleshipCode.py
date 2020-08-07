@@ -75,6 +75,55 @@ def generateShipPos(enemy, player):
 
     return enemy, player
 
+
+def writeBoard(enemyBoard, playerBoard, gameIdentifier):
+    gameId = gameSession.objects.get(gameId=gameIdentifier)
+    gameMoveModel = gameMoves.objects.get(game=gameId)
+
+    modelFriendly = ""
+    for x in enemyBoard:
+        for area in x:
+            modelFriendly+=area
+        modelFriendly+="-"
+    gameMoveModel.enemyMoves = modelFriendly[0:len(modelFriendly)-1]
+    gameMoveModel.save()
+
+    modelFriendly = ""
+    for x in playerBoard:
+        for area in x:
+            modelFriendly+=area
+        modelFriendly+="-"
+    gameMoveModel.playerMoves = modelFriendly[0:len(modelFriendly)-1]
+    gameMoveModel.save()
+    
+
+
+
+########################
+
+def getShots(gameIdentifier):
+    gameId = gameSession.objects.get(gameId=gameIdentifier)
+    gameMoveModel = gameMoves.objects.get(game=gameId)
+
+    enemyShots = gameMoveModel.enemyShots.split("-")
+    playerShots = gameMoveModel.playerShots.split("-")
+
+    return enemyShots, playerShots 
+
+def writeShots(gameIdentifier, person, shot):
+    gameId = gameSession.objects.get(gameId=gameIdentifier)
+    gameMoveModel = gameMoves.objects.get(game=gameId)
+    
+    if person == "player":
+        gameMoveModel.playerShots = gameMoveModel.playerShots +"-"+ str(shot)
+        gameMoveModel.save()
+    elif person == "enemy":
+        gameMoveModel.enemyShots = gameMoveModel.enemyShots +"-"+ str(shot)
+        gameMoveModel.save()
+        
+
+
+
 ######################################
 
 def newGame():
@@ -83,5 +132,6 @@ def newGame():
 
     enemyBoard, playerBoard = getBoard(gameId.gameId)
     enemyBoard, playerBoard = generateShipPos(enemyBoard, playerBoard)
+    writeBoard(enemyBoard, playerBoard, gameId.gameId)
 
-    return enemyBoard, playerBoard
+    return enemyBoard, playerBoard, gameId.gameId
