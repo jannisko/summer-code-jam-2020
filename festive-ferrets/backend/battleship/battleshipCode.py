@@ -7,7 +7,7 @@ def deleteGame(gameIdentifier):
         gameMoves.objects.get(game=gameId).delete()
         gameId.delete()
     except:
-        print()
+        pass
 
 
 def getBoard(gameIdentifier):
@@ -165,9 +165,7 @@ def newGame():
     ################
 
 def enemyTurn(id):
-    print("Hi")
     p, e = getShots(id)
-    print(e)
     found = False
     while not found:
         shot = str(randint(0,4))+str(randint(0,6))
@@ -176,3 +174,37 @@ def enemyTurn(id):
         else:
             found=True
     writeShots(id, "enemy", shot)
+
+#### 
+
+def hitCount(id,person, shot):
+    gameId = gameSession.objects.get(gameId=id)
+    gameMoveModel = gameMoves.objects.get(game=gameId)
+
+    print(id,person,shot,gameMoveModel.eSunk,"tt",gameMoveModel.pSunk)
+    if person == "e":
+        if shot in gameMoveModel.eSunk:
+            return None
+        else:
+            gameMoveModel.eSunk+= "-"+shot
+
+    elif person == "p":
+        if shot in gameMoveModel.pSunk:
+            return None
+        else:
+            gameMoveModel.pSunk+= "-"+shot
+
+    gameMoveModel.save()
+
+    
+def victoryCheck(id):
+    gameId = gameSession.objects.get(gameId=id)
+    gameMoveModel = gameMoves.objects.get(game=gameId)   
+    print(len(gameMoveModel.eSunk.split("-")) == 5)
+    if len(gameMoveModel.eSunk.split("-")) == 5:
+        return "p"
+    elif len(gameMoveModel.pSunk.split("-")) == 5:
+        return "e"
+
+    return False
+

@@ -27,10 +27,18 @@ def battleship(request):
                 enemyShots, playerShots = battleshipCode.getShots(id)
                 battleshipCode.enemyTurn(id)
                 turn, message = battleshipCode.getTurn(id)
+                vic = battleshipCode.victoryCheck(id)
+                if vic:
+                    if vic == "p":
+                        message = "Congrats you detroyed all enemy ships"
+                    elif vic == "e":
+                        message = "The enemy has defeated us!"
+                    turn = "e"
+                
 
 
         return render(request, 'battleshipactive.html', {"playerShips":playerShips, "enemyShips":enemyShips,"playerShots":playerShots, "enemyShots":enemyShots, "message":message, \
-            "resetButton":"True", "turn":turn})
+            "resetButton":"True", "turn":turn, "id":id})
         
 
     return render(request, 'battleshipinactive.html', {"startButton":"True"})

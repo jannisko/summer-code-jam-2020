@@ -12,3 +12,5 @@ class gameMoves(models.Model):
     enemyShots = models.TextField(default="")
     playerShots = models.TextField(default="")
     turn = models.CharField(max_length=1, default="p")
+    eSunk = models.TextField(default="")
+    pSunk = models.TextField(default="")

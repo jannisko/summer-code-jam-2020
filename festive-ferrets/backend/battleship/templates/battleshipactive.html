@@ -5,7 +5,7 @@
 {% for x in enemyShips %}
 <tr>
     {% for area in x %}
-        {% returnInfoE forloop.counter0 forloop.parentloop.counter0 playerShots enemyShips as found %}
+        {% returnInfoE forloop.counter0 forloop.parentloop.counter0 playerShots enemyShips id as found %}
         {% if found == "hit" %}
         <td style="background-color: red;"></td>
         {% elif found == "miss" %}
@@ -29,7 +29,7 @@
 {% for x in playerShips %}
 <tr>
     {% for area in x %}
-    {% returnInfoE forloop.counter0 forloop.parentloop.counter0 enemyShots playerShips as found %}
+    {% returnInfoP forloop.counter0 forloop.parentloop.counter0 enemyShots playerShips id as found %}
     {% if found == "hit" %}
     <td style="background-color: red;"></td>
     {% elif area != " " %}
