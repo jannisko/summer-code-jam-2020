@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {BoardsContext} from '../interfaces/boards-context';
 import {Board} from '../interfaces/board';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -15,7 +16,7 @@ export class BoardsService {
 
 
 
-  private appUrl='http://127.0.0.1:80/nchan/boards/';
+  private appUrl=`http://${environment.backend_host}:${environment.backend_ip}/nchan/boards/`;
 
   getBoards(): Observable<BoardsContext> {
     return this.http.get<BoardsContext>(`${this.appUrl}?format=json`);
