@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Comment} from '../interfaces/comment';
 import {tap} from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import {tap} from 'rxjs/operators';
 export class CommentService {
 
   constructor(private http:HttpClient) { }
-  commentUrl="http://127.0.0.1:80/nchan/comments/";
+  commentUrl=`http://${environment.backend_host}:${environment.backend_ip}/nchan/comments/`;
 
   addComment(comment):Observable<Comment>{
     return this.http.post<Comment>(`${this.commentUrl}`,comment).pipe(

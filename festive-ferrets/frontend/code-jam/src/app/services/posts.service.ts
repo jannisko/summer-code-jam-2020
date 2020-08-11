@@ -5,6 +5,7 @@ import {PostContext} from '../interfaces/post-context';
 import {CommentsContext} from '../interfaces/comments-context';
 import {Post} from '../interfaces/post';
 import {tap} from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -16,8 +17,8 @@ export class PostsService {
   constructor(private _http: HttpClient) {
   }
 
-  private boardsUrl = 'http://127.0.0.1:80/nchan/boards/';
-  private postsUrl = 'http://127.0.0.1:80/nchan/posts/';
+  private boardsUrl = `http://${environment.backend_host}:${environment.backend_ip}/nchan/boards/`;
+  private postsUrl = `http://${environment.backend_host}:${environment.backend_ip}/nchan/posts/`;
 
   getPostsForBoard(id): Observable<PostContext> {
     return this._http.get<PostContext>(`${this.boardsUrl}${id}/posts?format=json`);
